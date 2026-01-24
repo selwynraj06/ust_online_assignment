@@ -1,0 +1,5 @@
+package com.simplemovie.controller;
+
+public class BookingController {
+
+}

@@ -1,0 +1,6 @@
+package com.simplemovie.repository;
+
+
+public class MovieRepository {
+
+}

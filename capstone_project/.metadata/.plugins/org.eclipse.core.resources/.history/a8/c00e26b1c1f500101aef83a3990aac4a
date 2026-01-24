@@ -1,0 +1,38 @@
+package com.simplemovie.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.simplemovie.entity.Shows;
+import com.simplemovie.service.ShowsService;
+
+@RestController
+public class ShowsController {
+	
+	@Autowired
+	ShowsService showServ;
+	
+	// http://localhost:8080/api/addshows
+	@PostMapping("/api/addshows")
+	public Shows addShow(@RequestBody Shows show) {
+		return showServ.addShows(show);
+	}
+	
+	// http://localhost:8080/api/shows
+	@GetMapping("/api/shows")
+	public List<Shows> showAllDetails() {
+		return showServ.showAllShows();
+	}
+	
+	// http://localhost:8080/api/shows/movies/{movieId}
+	@GetMapping("/api/shows/movie/{movieId}")
+	public List<Shows> getShowsByMovieId(@PathVariable int movieId){
+		return showServ.getShowByMovieId(movieId);
+	}
+}

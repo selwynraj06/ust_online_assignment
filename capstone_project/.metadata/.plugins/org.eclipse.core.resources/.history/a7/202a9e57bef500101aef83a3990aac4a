@@ -1,0 +1,20 @@
+package com.simplemovie.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.simplemovie.entity.Shows;
+import com.simplemovie.repository.ShowsRepository;
+
+@Service
+public class ShowsService {
+	
+	@Autowired
+	ShowsRepository showRepo;
+	
+	public Shows addShows(Shows show) {
+		return showRepo.save(show);
+	}
+	
+	
+}

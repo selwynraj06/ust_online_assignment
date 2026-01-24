@@ -1,0 +1,17 @@
+package com.simplemovie.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.simplemovie.repository.BookingRepository;
+import com.simplemovie.repository.ShowsRepository;
+
+@Service
+public class BookingService {
+	
+	@Autowired
+	BookingRepository bookingRepo;
+	
+	@Autowired
+	ShowsRepository showRepo;
+}

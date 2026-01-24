@@ -1,0 +1,5 @@
+package com.simplemovie.repository;
+
+public interface ShowsRepository {
+
+}

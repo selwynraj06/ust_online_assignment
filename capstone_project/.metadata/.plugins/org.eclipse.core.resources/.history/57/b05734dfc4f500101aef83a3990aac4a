@@ -1,0 +1,28 @@
+package com.simplemovie.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.simplemovie.entity.Shows;
+import com.simplemovie.repository.ShowsRepository;
+
+@Service
+public class ShowsService {
+	
+	@Autowired
+	ShowsRepository showRepo;
+	
+	public Shows addShows(Shows show) {
+		return showRepo.save(show);
+	}
+	
+	public List<Shows> showAllShows(){
+		return showRepo.findAll();
+	}
+	
+	public List<Shows> getShowByMovieId(int movieId){
+		return showRepo.findByMoviesMovieId(movieId);
+	}
+}

@@ -1,0 +1,12 @@
+package com.simplemovie.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.simplemovie.entity.Shows;
+
+public interface ShowsRepository extends JpaRepository<Shows, Integer> {
+	
+	List<Shows> findByMovieMovieId(int movieID);
+}

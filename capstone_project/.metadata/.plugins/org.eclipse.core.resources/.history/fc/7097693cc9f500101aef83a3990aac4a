@@ -1,0 +1,35 @@
+package com.simplemovie.service;
+
+import java.awt.print.Book;
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.simplemovie.entity.Booking;
+import com.simplemovie.entity.Shows;
+import com.simplemovie.repository.BookingRepository;
+import com.simplemovie.repository.ShowsRepository;
+
+@Service
+public class BookingService {
+	
+	@Autowired
+	BookingRepository bookingRepo;
+	
+	@Autowired
+	ShowsRepository showRepo;
+	
+	public Booking bookTickets(Booking booking) {
+		Shows show = showRepo.findById(
+				booking.getShow().getShowId()).orElseThrow();
+		if(booking.getSeatsBooked() > show.getAvailableSeats()) {
+			throw new RuntimeException("Not Enough Seats");
+		}
+		show.setAvailableSeats(
+				show.getAvailableSeats()-booking.getSeatsBooked());
+		booking.setBookingDate(LocalDate.now());
+		showRepo.save(show);
+		return bookingRepo.save(booking);
+	}
+}
